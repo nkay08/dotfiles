@@ -15,7 +15,7 @@ if [ -f ~/.bash_aliases ]; then
 fi
 
 if [ -f ~/.bashrc.d/* ]; then
-    for file in ~/.bashrc.d/*; do
+    for file in "$HOME/.bashrc.d/*" ]; do
         source $file
     done
 fi
