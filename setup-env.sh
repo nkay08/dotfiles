@@ -4,17 +4,30 @@
 DIR="$PWD"
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
+TARGET_DIR="$DIR/.."
+STOW_DIR="$DIR"
+
+if [ ! -z "$1" ]; then
+    TARGET_DIR="$1"
+fi
+
+if [ ! -z "$2" ]; then
+    STOW_DIR="$1"
+fi
+
 # Set directory name for file conflicts
 CONFLICTS_DIRNAME="conflicts"
-CONFLICTS_DIR="$SCRIPT_DIR/$CONFLICTS_DIRNAME"
+CONFLICTS_DIR="$STOW_DIR/$CONFLICTS_DIRNAME"
 
 # Change to script dir, as stow packages are there
-cd "$SCRIPT_DIR"
+# Do not change for now, so script can be called from other directories!
+#cd "$SCRIPT_DIR"
 
 # source stow variables
-source "$SCRIPT_DIR/shell/.bashrc.d/stow"
+#source "$SCRIPT_DIR/shell/.bashrc.d/stow"
 
 # Get list of all local packages
+cd "$STOW_DIR"
 STOW_LIST=( $(  ls -d  */  | sed 's#/##'  ) )
 
 #STOW_LIST=(
@@ -50,7 +63,7 @@ if [ "$stow_folders" == "${stow_folders#[nN]}" ]; then
         echo "STOW $stowpkg"
         # Check if the stow operation would result in a conflict, by performing a dry-run and store conflicted files in array
         #conflicts=$(stow  -nv "$stowpkg" 2>&1  |  grep "existing target" )
-        conflicts_arr=( $(stow  -nv "$stowpkg" 2>&1 | grep "existing target is neither a link nor a directory: *" | sed 's/\* existing target is neither a link nor a directory://' | sed 's/^[ \t]//' ) )
+        conflicts_arr=( $(stow -t "$TARGET_DIR" -d "$STOW_DIR"  -nv "$stowpkg" 2>&1 | grep "existing target is neither a link nor a directory: *" | sed 's/\* existing target is neither a link nor a directory://' | sed 's/^[ \t]//' ) )
         # If there are conflicts, backup existing file
         if [   ${#conflicts_arr[@]} -gt 0  ];  then
             echo "CONFLICTING  files: "
@@ -69,7 +82,7 @@ if [ "$stow_folders" == "${stow_folders#[nN]}" ]; then
                 mv "../$conflict_file"  "$CONFLICTS_DIR/$conflict_file.$now"
             done
         fi
-        stow  -v "$stowpkg"
+        stow  -v -t "$TARGET_DIR" -d "$STOW_DIR"  "$stowpkg"
     done
     exit 0
 else
