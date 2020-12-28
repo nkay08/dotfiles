@@ -1,4 +1,4 @@
- TEXLIVE_DIR=/mnt/opt/texlive/current
+ TEXLIVE_DIR=/opt/texlive/current
  export PATH="$TEXLIVE_DIR"/bin/x86_64-linux/:$PATH    
  export INFOPATH="$TEXLIVE_DIR"/texmf-dist/doc/info:$INFOPATH
  export MANPATH="$TEXLIVE_DIR"/texmf-dist/doc/man:$MANPATH
