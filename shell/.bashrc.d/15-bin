@@ -1,0 +1,3 @@
+if [ -f ~/bin/* ]; then
+    export PATH=$HOME/bin:$PATH
+fi
