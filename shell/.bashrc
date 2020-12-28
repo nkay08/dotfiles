@@ -148,3 +148,9 @@ fi
 if [ -f ~/.texliverc ]; then
 . ~/.texliverc
 fi
+
+if [ -d ~/.bashrc.d ]; then
+    for file in ~/.bashrc.d/*; do
+        source $file
+    done
+fi
