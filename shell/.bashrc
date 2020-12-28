@@ -14,7 +14,7 @@ if [ -f ~/.bash_aliases ]; then
 . ~/.bash_aliases
 fi
 
-if [ -d ~/.bashrc.d ]; then
+if [ -f ~/.bashrc.d/* ]; then
     for file in ~/.bashrc.d/*; do
         source $file
     done
