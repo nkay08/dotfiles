@@ -5,15 +5,14 @@ SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 source "$SCRIPT_DIR/shell/.bashrc.d/stow"
 
-STOW_LIST=(
-    "shell"
-    "texlive"
-    "rofi"
-    "zsh"
-)
+STOW_LIST=( $(  ls -d  */  | sed 's#/##'  ) )
 
-
-echo ${STOW_LIST[@]}
+#STOW_LIST=(
+#    "shell"
+#    "texlive"
+#    "rofi"
+#    "zsh"
+#)
 
 echo  "Folders to stow: "
 echo  "------------------------------------------"
@@ -23,8 +22,10 @@ echo  "------------------------------------------"
 echo -n "Stow these? [Yn]"
 read stow_folders
 
+
+
 if [ "$stow_folders" == "${stow_folders#[nN]}" ]; then
-    stow ${STOW_LIST[@]}
+   # stow ${STOW_LIST[@]}
     exit 0
 else
     exit 0
