@@ -145,10 +145,6 @@ if [ -f ~/.bash_aliases ]; then
 . ~/.bash_aliases
 fi
 
-if [ -f ~/.texliverc ]; then
-. ~/.texliverc
-fi
-
 if [ -d ~/.bashrc.d ]; then
     for file in ~/.bashrc.d/*; do
         source $file
