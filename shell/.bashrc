@@ -11,11 +11,12 @@ xhost +local:root > /dev/null 2>&1
 # export QT_SELECT=4
 
 if [ -f ~/.bash_aliases ]; then
-. ~/.bash_aliases
+    . ~/.bash_aliases
 fi
 
-if [ -f ~/.bashrc.d/* ]; then
+if [ -f "$HOME/.bashrc.d/*" ]; then
     for file in "$HOME/.bashrc.d/*" ]; do
-        source $file
+        echo "asd"
+        #source $file
     done
 fi
