@@ -1,0 +1,12 @@
+! "Number of lines" Set from: Default
+rofi.fixed-num-lines:                false
+rofi.lines:                          6
+rofi.font:                           roboto 12
+rofi.show-icons:                     true
+!rofi.sort:                           false
+rofi.levenshtein-sort:               false
+!rofi.theme:							flat-orange
+rofi.kb-cancel:                      Escape,Control+g,Control+bracketleft,Control+space
+rofi.kb-row-select:                  Control+a
+rofi.kb-move-front:					Control+q
+rofi.modi:                           window,run,ssh,drun
