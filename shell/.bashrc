@@ -16,7 +16,6 @@ fi
 
 if [ -f "$HOME/.bashrc.d/*" ]; then
     for file in "$HOME/.bashrc.d/*" ]; do
-        echo "asd"
-        #source $file
+        source $file
     done
 fi
