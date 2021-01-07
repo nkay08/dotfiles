@@ -39,7 +39,12 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
     unset f
 fi
 
-#sh /home/nkay/apps/scripts/audio-caffeine.sh &
+if [ -d "$HOME/.config/X11/xinitrc.d" ] ; then
+    for f in "$HOME/.config/X11/xinitrc.d/"?*.sh ; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
+fi
 
 get_session(){
 	local dbus_args=(--sh-syntax --exit-with-session)
