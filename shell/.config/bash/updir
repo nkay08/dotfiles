@@ -2,10 +2,26 @@
 # Alternative to .. alias
 # Allows using .. to jump up directories 
 # Allows using .. # to jump up # number of directories
-..() {
-    if [ -z "$1" ]; then
-        cd ..
+
+
+# ..() {
+#     if [ -z "$1" ]; then
+#         cd ..
+#     else
+#         cd `awk "BEGIN {while (c++<$1) printf \"../\"}"`
+#     fi
+# }
+
+function ..(){
+    if [ -n "$1" ]; then
+        NUM=$(grep -o '[0-9]\+' <<< "$1")
+        START=0
+        while [ "$START" -lt "$NUM" ]
+        do
+            \cd ..
+            START=$((START+1))
+        done
     else
-        cd `awk "BEGIN {while (c++<$1) printf \"../\"}"`
+        \cd ..
     fi
 }
