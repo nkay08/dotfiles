@@ -1,0 +1,11 @@
+# CREDITS: https://old.reddit.com/r/linux/comments/chnz82/what_are_peoples_favourite_bashfavourite_shell/euwbxpp/
+# Alternative to .. alias
+# Allows using .. to jump up directories 
+# Allows using .. # to jump up # number of directories
+..() {
+    if [ -z "$1" ]; then
+        cd ..
+    else
+        cd `awk "BEGIN {while (c++<$1) printf \"../\"}"`
+    fi
+}
