@@ -14,8 +14,17 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-if [ -f "$HOME/.bashrc.d/*" ]; then
-    for file in "$HOME/.bashrc.d/*" ]; do
-        source $file
+BASHRC_MODULES_FOLDER="$HOME/.config/bash"
+
+#echo ".bashrc: Try loading bashrc modules in $BASHRC_MODULES_FOLDER"
+if [ -d ${BASHRC_MODULES_FOLDER} ]; then # No quotes around *, else doesnt work
+    for file in ${BASHRC_MODULES_FOLDER}/* ; do # No quotes around *, else doesnt work
+#         echo ".bashrc: Loading $file"
+        . $file
     done
+else
+    true
+#     echo ".bashrc: No folder: $BASHRC_MODULES_FOLDER"
+#     echo "OR"
+#     echo ".bashrc: No files in: $BASHRC_MODULES_FOLDER"
 fi
