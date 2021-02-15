@@ -1,0 +1,3 @@
+[submodule "dotfiles_stow_script"]
+	path = dotfiles_stow_script
+	url = https://github.com/nkay08/dotfiles_stow_script.git
